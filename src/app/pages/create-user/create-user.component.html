@@ -1,0 +1,52 @@
+<div>
+    <form (ngSubmit)="addData()" #form="ngForm" ngNativeValidate>
+        <p-card header="{{empHeader}}" [style]="{'width': '40rem', 'margin-bottom': '2em','margin-left':'25em','margin-top':'3em'
+            ,'height':'30em'}">
+            <div style="margin-left: 4em;" [style.pointer-events]="isFromDetail?'none':''">    
+                <div class="p-field p-grid" style="padding: 10px;">
+                    <label for="firstname" style="width:100px">Firstname</label>
+                    <span style="margin-left: 5%;">
+                        <input id="firstname" name="fName" type="text" [(ngModel)]="empData.fName" pInputText required> 
+                    </span>
+                </div>
+                <div class="p-field p-grid" style="padding: 10px;">
+                    <label for="lastname" style="width:100px">Lastname</label>
+                    <span style="margin-left: 5%;">
+                        <input id="lastname" name="lName" [(ngModel)]="empData.lName" type="text" pInputText required> 
+                    </span>
+                </div>
+            <div style="padding: 10px;">
+                <label style="width:100px">DOB</label>
+                <span style="margin-left: 11%;">
+                    <p-calendar [(ngModel)]="empData.dob" name="dob"></p-calendar>
+                </span>
+            </div>
+            <div style="padding: 10px;">
+                <span>Gender</span>
+                <span style="margin-left: 5%;">
+                <p-radioButton name="male" value="male" [(ngModel)]="empData.gender"></p-radioButton>
+                <label>Male</label>
+                </span>
+                <span style="margin-left: 5%;">
+                    <p-radioButton name="female" value="female" [(ngModel)]="empData.gender"></p-radioButton>
+                    <label>Female</label>
+                </span>
+            </div>
+            <div>
+                <label>Department</label>
+                <span style="margin-left: 5%;">
+                    <p-dropdown name="dep" [options]="department" [(ngModel)]="empData.dep" placeholder="Select"></p-dropdown>
+                </span>
+            </div>
+        </div>
+        <span style="margin-left: 70%;">
+          <p-button type="button" label="Back" (click)="goBack()"></p-button>
+        </span>
+        <span *ngIf="!isFromDetail" style="margin-left: 10px" [style.pointer-events]="isFromDetail?'none':''">
+            <p-button type="submit">{{submitLabel}}</p-button>
+        </span>
+        </p-card>
+    </form>
+  </div>
+
+  <p-toast position="top-right" [style]="{width: '20vw'}" [baseZIndex]="10000100011"></p-toast>
